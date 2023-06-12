@@ -8,4 +8,3 @@ print("Current OTP:", totp)
 
 data = rh.load_phoenix_account()
 print(data)
-
