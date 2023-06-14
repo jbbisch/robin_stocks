@@ -3,8 +3,10 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 
+
+
 # Retrieve last 5 days of DOGECOIN to USD exchange rates with a 5 minute interval and save the dataframe to a variable.
-DOGE_USD = yf.download(tickers='DOGE-USD', period='5d', interval='5m')
+DOGE_USD = yf.download(tickers='DOGE-USD', period='1d', interval='5m')
 
 DOGE_USD.head()
 print(pd.DataFrame(DOGE_USD.head()))
@@ -35,7 +37,7 @@ trade_signals['Signal'] = 0.0
 
 # Wherever the Shorter term SMA is above the Longer term SMA, set the Signal column to 1, otherwise 0
 trade_signals['Signal'] = np.where(trade_signals['Short'] > trade_signals['Long'], 1.0, 0.0)   
-print(np.where(trade_signals['Short'] > trade_signals['Long'], 1.0, 0.0))
+print(pd.DataFrame(trade_signals))
 
 # Order execution through trade signals 
 trade_signals['Position'] = trade_signals['Signal'].diff()
