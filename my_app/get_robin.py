@@ -19,4 +19,3 @@ print("Crypto buying power: $", buying_power)
 # Selling power
 selling_power = my_portfolio["crypto"]["market_value"]["amount"]
 print("Crypto selling power: $", selling_power)
-

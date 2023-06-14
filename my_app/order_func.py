@@ -37,8 +37,7 @@ def sell_crypto(symbol, amount):
         return None
      
 #Use the trade signals to execute orders
-if trade_signals['Position'] == 1.0:
+if trade_signals['Signal'] == 1.0:
     buy_crypto(DOGE_USD, get_robin.buying_power)
-elif trade_signals['Position'] == -1.0:
+elif trade_signals['Signal'] == 0.0:
     sell_crypto(DOGE_USD, get_robin.selling_power)
-else: trade_signals['Position'] == 0.0   
