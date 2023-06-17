@@ -2,39 +2,26 @@ import get_robin
 from strategy import trade_signals, DOGE_USD
 import robin_stocks.robinhood as rh
 
+# Path: robin_stocks-1\my_app\order_func.py
+# Create a function to execute a buy order
+def buy_crypto(DOGE_USD, buying_power):
+    # Get the current price of DOGE
+    current_price = DOGE_USD["Close"].iloc[-1]
+    # Execute the buy order
+    rh.order_buy_crypto_by_price(symbol=DOGE_USD, amountInDollars=buying_power)
+    # Print the current price and the amount purchased
+    print("Buying DOGE at: $", current_price)
+    print("Bought: ", buying_power)
 
-# Create a function to execute buy orders
-def buy_crypto(symbol, amount):
-    """Executes a market order to buy a specified amount of a cryptocurrency.
-    Args:
-        symbol (str): A cryptocurrency ticker symbol.
-        amount (float): The amount of the cryptocurrency to buy.
-    Returns:
-        dict: A dictionary containing information about your order.
-    """
-    try:
-        order = rh.order_buy_crypto_by_price(symbol, amount)
-        print("Order placed for {} {} at ${}.".format(symbol, amount, order["price"]))
-        return order
-    except Exception as e:
-        print("Error: {}".format(e))
-        return None
-    
-def sell_crypto(symbol, amount):
-    """Executes a market order to sell a specified amount of a cryptocurrency.
-    Args:
-        symbol (str): A cryptocurrency ticker symbol.
-        amount (float): The amount of the cryptocurrency to sell.
-    Returns:
-        dict: A dictionary containing information about your order.
-    """
-    try:
-        order = rh.order_sell_crypto_by_price(symbol, amount)
-        print("Order placed for {} {} at ${}.".format(symbol, amount, order["price"]))
-        return order
-    except Exception as e:
-        print("Error: {}".format(e))
-        return None
+# Create a function to execute a sell order
+def sell_crypto(DOGE_USD, selling_power):
+    # Get the current price of DOGE
+    current_price = DOGE_USD["Close"].iloc[-1]
+    # Execute the sell order
+    rh.order_sell_crypto_by_price(symbol=DOGE_USD, amountInDollars=selling_power)
+    # Print the current price and the amount sold
+    print("Selling DOGE at: $", current_price)
+    print("Sold: ", selling_power)
      
 # Create a variable to keep track of the last trade
 last_trade = None
@@ -60,5 +47,5 @@ for index, signal in trade_signals.iterrows():
             buy_crypto(DOGE_USD, get_robin.buying_power)
             last_trade = "buy"
 # Print the current signal and last trade
-#print("Signal: {} | Last Trade: {}".format(signal["Signal"], last_trade))
+print("Signal: {} | Last Trade: {}".format(signal["Signal"], last_trade))
 

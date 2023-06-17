@@ -4,7 +4,8 @@ import pyotp
 
 totp = pyotp.TOTP(variables.MFA_Code).now()
 #print("Current OTP:", totp)
-login = rh.login(variables.RH_Login, variables.RH_Pass, mfa_code=totp, store_session=True)
+login =rh.login(variables.RH_Login, variables.RH_Pass, mfa_code=totp, store_session=True)
+
 
 # Get values for useage in other scripts
 my_portfolio = rh.load_phoenix_account()
